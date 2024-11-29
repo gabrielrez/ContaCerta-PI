@@ -34,10 +34,12 @@ $rotas->delete('/usuarios/{id}', [UsuarioController::class, 'destroy']);
 $rotas->get('/receitas', [ReceitaController::class, 'index']);
 $rotas->get('/receitas/novo', [ReceitaController::class, 'create']);
 $rotas->post('/receitas', [ReceitaController::class, 'store']);
+$rotas->delete('/receitas/{id}', [ReceitaController::class, 'destroy']);
 
 $rotas->get('/despesas', [DespesaController::class, 'index']);
 $rotas->get('/despesas/novo', [DespesaController::class, 'create']);
 $rotas->post('/despesas', [DespesaController::class, 'store']);
+$rotas->delete('/despesas/{id}', [DespesaController::class, 'destroy']);
 
 $rotas->get('/metas', [MetaController::class, 'index']);
 $rotas->get('/metas/novo', [MetaController::class, 'create']);

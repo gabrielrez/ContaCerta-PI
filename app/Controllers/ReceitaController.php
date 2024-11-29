@@ -34,4 +34,10 @@ class ReceitaController extends Controller
         $this->receita_model->insert($receita);
         return redirecionar('/dashboard');
     }
+
+    public function destroy($id)
+    {
+        $this->receita_model->delete($id);
+        return redirecionar('/receitas');
+    }
 }

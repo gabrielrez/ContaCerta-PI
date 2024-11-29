@@ -16,6 +16,7 @@
         echo '<li><strong>Tipo:</strong> ' . $receita['categoria'] . '</li>';
         echo '<li><strong>Descrição:</strong> ' . $receita['descricao'] . '</li>';
         echo '<li><strong>Valor:</strong> ' . $receita['valor'] . ' R$</li>';
+        echo '<a class="delete-btn" data-id="' . $receita['id'] . '">Deletar</a>';
         echo '</ul>';
         echo '</div>';
     }
@@ -44,6 +45,11 @@
         font-size: 16px;
     }
 
+    .delete-btn {
+        color: red;
+        cursor: pointer;
+    }
+
     .receita {
         border-bottom: 1px solid #E0E0E0;
         padding: 10px 0;
@@ -53,3 +59,34 @@
         border-bottom: none;
     }
 </style>
+
+<script>
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', async function(event) {
+            event.preventDefault();
+
+            const receita_id = this.dataset.id;
+
+            if (!confirm('Tem certeza que deseja deletar esta receita?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/receitas/${receita_id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (response.ok) {
+                    this.closest('.receita').remove();
+                }
+
+                location.reload();
+            } catch (error) {
+                console.error('Erro:', error);
+            }
+        });
+    });
+</script>

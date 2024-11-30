@@ -34,4 +34,10 @@ class MetaController extends Controller
         $this->meta_model->insert($meta);
         return redirecionar('/dashboard');
     }
+
+    public function destroy($id)
+    {
+        $this->meta_model->delete($id);
+        return redirecionar('/metas');
+    }
 }

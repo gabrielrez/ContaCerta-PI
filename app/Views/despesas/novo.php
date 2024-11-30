@@ -27,7 +27,7 @@
         </div>
         <div class="input">
             <label for="valor">Valor</label>
-            <input type="number" placeholder="00.00 R$" name="valor">
+            <input type="number" placeholder="00.00 R$" name="valor" min="0">
         </div>
         <div class="input">
             <label for="descricao">Descrição</label>

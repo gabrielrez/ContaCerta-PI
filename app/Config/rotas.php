@@ -44,5 +44,6 @@ $rotas->delete('/despesas/{id}', [DespesaController::class, 'destroy']);
 $rotas->get('/metas', [MetaController::class, 'index']);
 $rotas->get('/metas/novo', [MetaController::class, 'create']);
 $rotas->post('/metas', [MetaController::class, 'store']);
+$rotas->delete('/metas/{id}', [MetaController::class, 'destroy']);
 
 $rotas->get('/historico', [HistoricoController::class, 'index']);

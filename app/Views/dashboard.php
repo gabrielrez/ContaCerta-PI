@@ -20,7 +20,7 @@
     <div class="info-container">
 
         <div class="left-container">
-            <div class="total">
+            <div class="total <?= ($total_receitas - $total_despesas) >= 0 ? "total_green" : "total_red" ?>">
                 <h3 class="total-titulo">Total</h3>
                 <span class="total-valor"><?= number_format($total_receitas - $total_despesas, 2, ',', '.') . ' R$'; ?></span>
             </div>
@@ -120,7 +120,7 @@
     }
 
     .total-titulo {
-        color: #49b759;
+        color: #000;
         font-size: 1.5rem;
     }
 
@@ -132,10 +132,17 @@
     }
 
     .total {
-        background-color: #D1ECD5;
         padding: 24px 32px;
         border-radius: 8px;
         max-height: 150px;
+    }
+
+    .total_green{
+        background-color: #D1ECD5;
+    }
+
+    .total_red{
+        background-color: #e3654f;
     }
 
     .opcoes {

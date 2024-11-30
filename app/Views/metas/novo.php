@@ -2,14 +2,14 @@
 
 <div class="container">
     <div class="top">
-        <h1>Nova Receita</h1>
+        <h1>Nova Meta</h1>
         <a href="/dashboard">Voltar</a>
     </div>
 
     <form action="/metas" method="POST">
         <div class="input">
             <label for="valor_alvo">Valor</label>
-            <input type="number" name="valor_alvo" placeholder="00.00 R$">
+            <input type="number" name="valor_alvo" placeholder="00.00 R$" min="0">
         </div>
         <div class="input">
             <label for="descricao">Descrição</label>
@@ -17,7 +17,7 @@
         </div>
         <div class="input">
             <label for="data_meta">Data estimada</label>
-            <input type="date" name="data_meta">
+            <input type="date" min="<?= date('Y-m-d', time()) ?>" name="data_meta">
         </div>
         <input type="hidden" name="id_usuario" value="<?= sessao()->pegar('usuario.id') ?>">
         <button>Adicionar</button>

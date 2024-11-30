@@ -18,6 +18,7 @@
         echo '<li>' . '<strong>Tipo:</strong> ' . $despesa['categoria'] . '</li>';
         echo '<li>' . '<strong>Descrição:</strong> ' . $despesa['descricao'] . '</li>';
         echo '<li>' . '<strong>Valor:</strong> ' . $despesa['valor'] .  ' R$' . '</li>';
+        echo '<a class="delete-btn" data-id="' . $despesa['id'] . '">Deletar</a>';
         echo '</ul>';
     }
 
@@ -46,6 +47,11 @@
         font-size: 16px;
     }
 
+    .delete-btn {
+        color: red;
+        cursor: pointer;
+    }
+
     .receita {
         border-bottom: 1px solid #E0E0E0;
         padding: 10px 0;
@@ -55,3 +61,34 @@
         border-bottom: none;
     }
 </style>
+
+<script>
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', async function(event) {
+            event.preventDefault();
+
+            const despesa_id = this.dataset.id;
+
+            if (!confirm('Tem certeza que deseja deletar esta despesa?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/despesas/${despesa_id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (response.ok) {
+                    this.closest('.despesa').remove();
+                }
+
+                location.reload();
+            } catch (error) {
+                console.error('Erro:', error);
+            }
+        });
+    });
+</script>

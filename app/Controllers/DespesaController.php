@@ -34,4 +34,10 @@ class DespesaController extends Controller
         $this->despesa_model->insert($despesa);
         return redirecionar('/dashboard');
     }
+
+    public function destroy($id)
+    {
+        $this->despesa_model->delete($id);
+        return redirecionar('/despesas');
+    }
 }
